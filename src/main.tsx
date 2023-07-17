@@ -1,10 +1,10 @@
-import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { StrictMode } from "react";
+import { StyledEngineProvider } from "@mui/material";
+import ReactDOM from "react-dom/client";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <StrictMode>
+  <StyledEngineProvider injectFirst>
     <App />
-  </StrictMode>
+  </StyledEngineProvider>
 );

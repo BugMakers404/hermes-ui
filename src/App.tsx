@@ -1,20 +1,28 @@
-import TopBar from "./global/TopBar.tsx";
-import { ColorModeContext, useMode } from "./theme/theme.ts";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { themeSettings } from "./theme/CustomizedTheme.ts";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import { Box, CssBaseline, Experimental_CssVarsProvider } from "@mui/material";
+import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 
 function App() {
-  const [theme, colorMode] = useMode();
+  const theme = extendTheme(themeSettings());
+  //
+  // const [theme, colorMode] = useMode();
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <div className="app">
-          <main className="content">
-            <TopBar />
-          </main>
-        </div>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <Experimental_CssVarsProvider theme={theme} defaultMode={"dark"}>
+      <CssBaseline />
+      <div className="app">
+        <main className="content">
+          {/*<TopBar />*/}
+          {/*<SideBar />*/}
+          <Box>
+            <DarkModeOutlinedIcon />
+          </Box>
+          {/*<Routes>*/}
+          {/*  <Route path="/" element={<Dashboard />} />*/}
+          {/*</Routes>*/}
+        </main>
+      </div>
+    </Experimental_CssVarsProvider>
   );
 }
 

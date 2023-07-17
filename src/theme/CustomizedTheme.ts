@@ -1,6 +1,3 @@
-import { createContext, useMemo, useState } from "react";
-import { createTheme, Theme } from "@mui/material";
-
 type ThemeOption = "dark" | "light";
 
 export const tokens = (mode: ThemeOption) => {
@@ -142,100 +139,80 @@ export const tokens = (mode: ThemeOption) => {
 };
 
 // mui theme settings
-export const themeSettings = (mode: ThemeOption) => {
-  const colors = tokens(mode);
+export const themeSettings = () => {
+  const darkColors = tokens("dark");
+  const lightColors = tokens("light");
 
   const themeColors = {
     dark: {
-      primary: {
-        main: colors.primary["500"],
-      },
-      secondary: {
-        main: colors.greenAccent["500"],
-      },
-      neutral: {
-        dark: colors.grey["700"],
-        main: colors.grey["500"],
-        light: colors.grey["100"],
-      },
-      background: {
-        default: colors.primary["500"],
+      palette: {
+        primary: {
+          main: darkColors.primary["500"],
+        },
+        secondary: {
+          main: darkColors.greenAccent["500"],
+        },
+        neutral: {
+          dark: darkColors.grey["700"],
+          main: darkColors.grey["500"],
+          light: darkColors.grey["100"],
+        },
+        background: {
+          default: darkColors.primary["500"],
+        },
       },
     },
     light: {
-      primary: {
-        main: colors.primary["100"],
-      },
-      secondary: {
-        main: colors.greenAccent["500"],
-      },
-      neutral: {
-        dark: colors.grey["700"],
-        main: colors.grey["500"],
-        light: colors.grey["100"],
-      },
-      background: {
-        default: "#fcfcfc",
+      palette: {
+        primary: {
+          main: "#C62D27",
+        },
+        secondary: {
+          main: lightColors.greenAccent["500"],
+        },
+        neutral: {
+          dark: lightColors.grey["700"],
+          main: lightColors.grey["500"],
+          light: lightColors.grey["100"],
+        },
+        background: {
+          default: "#fcfcfc",
+        },
       },
     },
   };
 
   return {
-    palette: {
-      mode: mode,
-      ...themeColors[mode],
-      typography: {
+    colorSchemes: {
+      ...themeColors,
+    },
+    typography: {
+      fontFamily: ["Source Sans 3", "sans-serif"].join(","),
+      fontSize: 12, // Default mui font size
+      h1: {
         fontFamily: ["Source Sans 3", "sans-serif"].join(","),
-        fontSize: 12, // Default mui font size
-        h1: {
-          fontFamily: ["Source Sans 3", "sans-serif"].join(","),
-          fontSize: 40,
-        },
-        h2: {
-          fontFamily: ["Source Sans 3", "sans-serif"].join(","),
-          fontSize: 32,
-        },
-        h3: {
-          fontFamily: ["Source Sans 3", "sans-serif"].join(","),
-          fontSize: 24,
-        },
-        h4: {
-          fontFamily: ["Source Sans 3", "sans-serif"].join(","),
-          fontSize: 20,
-        },
-        h5: {
-          fontFamily: ["Source Sans 3", "sans-serif"].join(","),
-          fontSize: 16,
-        },
-        h6: {
-          fontFamily: ["Source Sans 3", "sans-serif"].join(","),
-          fontSize: 14,
-        },
+        fontSize: 40,
+      },
+      h2: {
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
+        fontSize: 32,
+      },
+      h3: {
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
+        fontSize: 24,
+      },
+      h4: {
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
+        fontSize: 20,
+      },
+      h5: {
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
+        fontSize: 16,
+      },
+      h6: {
+        fontFamily: ["Source Sans 3", "sans-serif"].join(","),
+        fontSize: 14,
       },
     },
   };
-};
-
-// context for color mode
-export const ColorModeContext = createContext({
-  toggleColorMode: () => {
-    // This is a default function that will be overridden in the provider
-  },
-});
-
-export const useMode = (): [Theme, { toggleColorMode: () => void }] => {
-  const [mode, setMode] = useState<ThemeOption>("dark");
-
-  const colorMode = useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prev) => (prev === "light" ? "dark" : "light"));
-      },
-    }),
-    []
-  );
-
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-
-  return [theme, colorMode];
 };
