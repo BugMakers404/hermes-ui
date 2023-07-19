@@ -160,6 +160,7 @@ export const themeSettings = () => {
         background: {
           default: darkColors.primary["500"],
         },
+        MuiDrawer: {},
       },
     },
     light: {

@@ -1,6 +1,8 @@
+import Dashboard from "./scenes/dashboard/Dashboard.tsx";
+import SideBar from "./scenes/global/SideBar.tsx";
+import TopBar from "./scenes/global/TopBar.tsx";
 import { themeSettings } from "./theme/CustomizedTheme.ts";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import { Box, CssBaseline, Experimental_CssVarsProvider } from "@mui/material";
+import { CssBaseline, Experimental_CssVarsProvider } from "@mui/material";
 import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 
 function App() {
@@ -11,12 +13,10 @@ function App() {
     <Experimental_CssVarsProvider theme={theme} defaultMode={"dark"}>
       <CssBaseline />
       <div className="app">
+        <SideBar />
         <main className="content">
-          {/*<TopBar />*/}
-          {/*<SideBar />*/}
-          <Box>
-            <DarkModeOutlinedIcon />
-          </Box>
+          <TopBar />
+          <Dashboard />
           {/*<Routes>*/}
           {/*  <Route path="/" element={<Dashboard />} />*/}
           {/*</Routes>*/}

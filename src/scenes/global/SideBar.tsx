@@ -1,3 +1,5 @@
+import { tokens } from "../../theme/CustomizedTheme.ts";
+import AccessibleForwardIcon from "@mui/icons-material/AccessibleForward";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -13,8 +15,8 @@ import {
   ListItemText,
   Theme,
   Toolbar,
+  Typography,
   styled,
-  useTheme,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import { useState } from "react";
@@ -22,6 +24,8 @@ import { useState } from "react";
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
+  backgroundColor: tokens(theme.palette.mode).grey["600"],
+  position: "relative",
   width: drawerWidth,
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
@@ -31,6 +35,8 @@ const openedMixin = (theme: Theme): CSSObject => ({
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
+  backgroundColor: tokens(theme.palette.mode).grey["600"],
+  position: "relative",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -42,14 +48,14 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
+// const DrawerHeader = styled("div")(({ theme }) => ({
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "flex-end",
+//   padding: theme.spacing(0, 1),
+//   // necessary for content to be below app bar
+//   ...theme.mixins.toolbar,
+// }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -57,6 +63,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
     flexShrink: 0,
     whiteSpace: "nowrap",
     boxSizing: "border-box",
+    height: "100vh",
     ...(open && {
       ...openedMixin(theme),
       "& .MuiDrawer-paper": openedMixin(theme),
@@ -68,21 +75,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
   })
 );
 
-// interface AppBarProps extends MuiAppBarProps {
-//   open?: boolean;
-// }
-
 export default function SideBar() {
-  const theme = useTheme();
-  const [open, setOpen] = useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const [open, setOpen] = useState(true);
 
   const handleDrawerClick = () => {
     setOpen((prev) => !prev);
@@ -96,7 +90,26 @@ export default function SideBar() {
         {/*    {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}*/}
         {/*  </IconButton>*/}
         {/*</DrawerHeader>*/}
-        <Toolbar />
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+          >
+            <AccessibleForwardIcon />
+          </IconButton>
+          <Typography
+            variant="h5"
+            noWrap
+            component="div"
+            sx={{ display: { xs: "none", sm: "block" } }}
+          >
+            Hermes
+          </Typography>
+        </Toolbar>
+
         <Divider />
         <List>
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
@@ -148,11 +161,11 @@ export default function SideBar() {
           ))}
         </List>
         <Box>
-          <IconButton
+          <ListItemButton
             aria-label="open drawer"
             sx={{
               minHeight: 48,
-              justifyContent: open ? "initial" : "right",
+              justifyContent: open ? "initial" : "center",
               px: 2.5,
             }}
             onClick={handleDrawerClick}
@@ -164,7 +177,7 @@ export default function SideBar() {
                 justifyContent: "right",
               }}
             />
-          </IconButton>
+          </ListItemButton>
         </Box>
       </Drawer>
     </Box>

@@ -1,19 +1,9 @@
 import ModeToggleButton from "./ModeToggleButton.tsx";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  AppBar,
-  Box,
-  IconButton,
-  InputBase,
-  Toolbar,
-  Typography,
-  alpha,
-  styled,
-  useTheme,
-} from "@mui/material";
+import { Box, IconButton, InputBase, Toolbar, alpha, styled } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -21,12 +11,13 @@ const Search = styled("div")(({ theme }) => ({
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
+    width: "1500px",
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
+    marginLeft: theme.spacing(0),
     width: "auto",
   },
 }));
@@ -56,35 +47,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function TopBar() {
-  const theme = useTheme();
-  console.log(theme);
-
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="fixed"
-        elevation={0}
-        enableColorOnDark={true}
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
+      <AppBar position="relative" elevation={0} enableColorOnDark={true}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuRoundedIcon />
-          </IconButton>
-          <Typography
-            variant="h5"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Hermes
-          </Typography>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

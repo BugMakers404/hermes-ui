@@ -14,12 +14,14 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.0",
     "@mui/material": "^5.14.0",
+    "@nivo/bar": "^0.83.0",
+    "@nivo/core": "^0.83.0",
     "add": "^2.0.6",
     "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.1"
+    "react-router-dom": "^6.14.2"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
@@ -30,7 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "eslint": "^8.44.0",
+    "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -38,7 +40,7 @@
     "husky": "^8.0.3",
     "prettier": "^2.8.8",
     "typescript": "^5.1.6",
-    "vite": "^4.4.3"
+    "vite": "^4.4.4"
   },
   "husky": {
     "hooks": {
