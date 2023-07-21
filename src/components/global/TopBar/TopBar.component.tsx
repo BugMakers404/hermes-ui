@@ -1,9 +1,10 @@
 import ModeToggleButton from "./ModeToggleButton.tsx";
+import StyledTopBar from "./TopBar.styles.ts";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
-import SearchIcon from "@mui/icons-material/Search";
-import { Box, IconButton, InputBase, Toolbar, alpha, styled } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Box, IconButton, InputBase, alpha, styled } from "@mui/material";
+import Toolbar from "@mui/material/Toolbar";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -11,7 +12,6 @@ const Search = styled("div")(({ theme }) => ({
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
-    width: "1500px",
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
@@ -46,30 +46,30 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function TopBar() {
+const TopBar = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="relative" elevation={0} enableColorOnDark={true}>
-        <Toolbar>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <ModeToggleButton />
+    <StyledTopBar position="relative" elevation={0} enableColorOnDark={true}>
+      <Toolbar>
+        <Search>
+          <SearchIconWrapper>
+            <SearchOutlinedIcon />
+          </SearchIconWrapper>
+          <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
+        </Search>
+        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <ModeToggleButton />
 
-            <IconButton size="small" aria-label="show 4 new mails" color="inherit">
-              <EmailRoundedIcon />
-            </IconButton>
-            <IconButton size="small" aria-label="show 17 new notifications" color="inherit">
-              <NotificationsRoundedIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+          <IconButton size="small" aria-label="show 4 new mails" color="inherit">
+            <EmailRoundedIcon />
+          </IconButton>
+          <IconButton size="small" aria-label="show 17 new notifications" color="inherit">
+            <NotificationsRoundedIcon />
+          </IconButton>
+        </Box>
+      </Toolbar>
+    </StyledTopBar>
   );
-}
+};
+
+export default TopBar;
