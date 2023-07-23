@@ -20,7 +20,7 @@ const SideBar = () => {
 
   return (
     <StyledSideBar variant="permanent" open={open}>
-      <SideBarHeader isSideBarOpen />
+      <SideBarHeader open={open} />
       <Divider />
       <List>
         <ListItem key={"Dashboard"} disablePadding sx={{ display: "block" }}>
@@ -28,7 +28,7 @@ const SideBar = () => {
             sx={{
               minHeight: 48,
               justifyContent: open ? "initial" : "center",
-              px: 2.5,
+              px: 2,
             }}
           >
             <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: "center" }}>

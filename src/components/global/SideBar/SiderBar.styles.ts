@@ -1,7 +1,7 @@
 import MuiDrawer from "@mui/material/Drawer";
 import { CSSObject, Theme, styled } from "@mui/material/styles";
 
-export const SIDE_BAR_OPEN_WIDTH = 240;
+export const SIDE_BAR_OPEN_WIDTH = 180;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: SIDE_BAR_OPEN_WIDTH,
@@ -18,9 +18,9 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: `calc(${theme.spacing(5)} + 6px)`,
   [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
+    width: `calc(${theme.spacing(6)} + 6px)`,
   },
 });
 

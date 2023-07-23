@@ -4,7 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-const SideBarHeader = ({ isSideBarOpen }: { isSideBarOpen: boolean }) => {
+const SideBarHeader = ({ open }: { open: boolean }) => {
   return (
     <StyledSideBarHeader>
       <ListItem
@@ -12,16 +12,14 @@ const SideBarHeader = ({ isSideBarOpen }: { isSideBarOpen: boolean }) => {
         sx={{
           display: "flex",
           minHeight: 48,
-          justifyContent: isSideBarOpen ? "initial" : "center",
-          px: 2.5,
+          justifyContent: open ? "initial" : "center",
+          px: 2,
         }}
       >
-        <ListItemIcon
-          sx={{ minWidth: 0, mr: isSideBarOpen ? 3 : "auto", justifyContent: "center" }}
-        >
+        <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: "center" }}>
           <AccessibleForwardIcon />
         </ListItemIcon>
-        <ListItemText primary={"Hermes"} sx={{ opacity: isSideBarOpen ? 1 : 0 }} />
+        <ListItemText primary={"Hermes"} sx={{ opacity: open ? 1 : 0 }} />
       </ListItem>
     </StyledSideBarHeader>
   );
