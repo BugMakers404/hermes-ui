@@ -1,6 +1,5 @@
 import { SIDE_BAR_OPEN_WIDTH } from "../SideBar/SiderBar.styles.ts";
-import MuiAppBar from "@mui/material/AppBar";
-import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar/AppBar";
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
 
 interface AppBarProps extends MuiAppBarProps {

@@ -162,6 +162,11 @@ export const themeSettings = () => {
         },
         MuiDrawer: {},
       },
+      component: {
+        MuiDrawer: {
+          backgroundColor: darkColors.primary["500"],
+        },
+      },
     },
     light: {
       palette: {
