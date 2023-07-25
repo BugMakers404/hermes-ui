@@ -1,27 +1,28 @@
 import SideBar from "./components/global/SideBar/SideBar.component.tsx";
 import TopBar from "./components/global/TopBar/TopBar.component.tsx";
-import { themeSettings } from "./theme/CustomizedTheme.ts";
+import { ColorModeContext, useMode } from "./theme/theme.hook.ts";
 import Dashboard from "./views/Dashboard/Dashboard.view.tsx";
-import { Box, CssBaseline, Experimental_CssVarsProvider } from "@mui/material";
-import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 
 function App() {
-  const theme = extendTheme(themeSettings());
+  const [theme, colorMode] = useMode();
 
   return (
-    <Experimental_CssVarsProvider theme={theme} defaultMode={"dark"}>
-      <CssBaseline />
-      <div className="app">
-        <SideBar />
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="app">
+          <SideBar />
 
-        <div className="content">
-          <TopBar />
-          <Box component="main" p={3}>
-            <Dashboard />
-          </Box>
+          <div className="content">
+            <TopBar />
+            <Box component="main" p={3}>
+              <Dashboard />
+            </Box>
+          </div>
         </div>
-      </div>
-    </Experimental_CssVarsProvider>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 
